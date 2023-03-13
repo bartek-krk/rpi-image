@@ -30,6 +30,12 @@ function print_waiting_msg() {
   done
 }
 
+function panic() {
+  log_error "Cannot proceed with script execution!!!"
+  log_error "Unhandled error: $1"
+  exit 1
+}
+
 function is_connected_to_internet() {
   print_waiting_msg "Checking Internet connection..." &
   local waiting_pid=$!
