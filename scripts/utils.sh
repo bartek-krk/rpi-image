@@ -32,13 +32,13 @@ function print_waiting_msg() {
 
 function is_connected_to_internet() {
   print_waiting_msg "Checking Internet connection..." &
-  waiting_pid=$!
+  local waiting_pid=$!
 
   ping -c 3 google.com > /dev/null 2>&1 &
-  ping_pid=$!
+  local ping_pid=$!
 
   wait $ping_pid
-  exit_cd=$?
+  local exit_cd=$?
 
   kill -9 $waiting_pid
 
@@ -55,7 +55,7 @@ function is_connected_to_internet() {
 function is_python_installed() {
   log_info "Checking if Python 3 is installed..."
     python3 --version > /dev/null
-    exit_cd=$?
+    local exit_cd=$?
     if [ $exit_cd -eq 0 ];
       then
         log_success "Python 3 already installed"
